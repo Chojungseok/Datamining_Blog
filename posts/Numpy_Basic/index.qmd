@@ -1,0 +1,7 @@
+---
+title: "Numpy_Basic"
+author: "Jungseok_Cho"
+date: "2023-04-06"
+categories: [code, analysis]
+image: "numpy.png"
+---
