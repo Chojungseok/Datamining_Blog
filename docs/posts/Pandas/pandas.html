@@ -170,6 +170,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
+<hr>
+<p>title: “Pandas” date: “2023-05-01” categories: [code, analysis] image: “pandas.png”</p>
+<hr>
 <p><strong>도구 - 판다스(pandas)</strong></p>
 <p><em><code>pandas</code> 라이브러리는 사용하기 쉬운 고성능 데이터 구조와 데이터 분석 도구를 제공합니다. 주 데이터 구조는 <code>DataFrame</code>입니다. 이를 인-메모리(in-memory) 2D 테이블로 생각할 수 있습니다(열 이름과 행 레이블이 있는 스프레드시트와 비슷합니다). 엑셀에 있는 많은 기능을 프로그램에서 사용할 수 있습니다. 여기에는 피봇 테이블이나 다른 열을 기반으로 열을 계산하고 그래프 출력하는 기능 등이 포함됩니다. 열 값으로 행을 그룹핑할 수도 있습니다. 또한 SQL과 비슷하게 테이블을 조인할 수 있습니다. 판다스는 시계열 데이터를 다루는데도 뛰어납니다.</em></p>
 <p>필요 라이브러리:</p>
@@ -501,7 +504,7 @@ Name: weights, dtype: int64</code></pre>
 <span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>s7.plot()</span>
 <span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="pandas_files/figure-html/cell-30-output-1.png" class="img-fluid"></p>
+<p><img src="pandas_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="32">
@@ -611,14 +614,14 @@ Freq: H, dtype: float64</code></pre>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="pandas_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
+<p><img src="pandas_files/figure-html/cell-35-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>temp_series.plot()</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="pandas_files/figure-html/cell-37-output-1.png" class="img-fluid"></p>
+<p><img src="pandas_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <section id="리샘플링" class="level2">
@@ -672,7 +675,7 @@ Freq: 2H, dtype: float64</code></pre>
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>temp_series_freq_2H.plot(kind<span class="op">=</span><span class="st">"bar"</span>)</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="pandas_files/figure-html/cell-42-output-1.png" class="img-fluid"></p>
+<p><img src="pandas_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>2시간 간격으로 어떻게 값이 수집되었는지 확인해 보세요. 예를 들어 6-8pm 간격을 보면 6:30pm에서 <code>5.1</code>이고 7:30pm에서 <code>6.1</code>입니다. 리샘플링 후에 <code>5.1</code>과 <code>6.1</code>의 평균인 <code>5.6</code> 하나를 얻었습니다. 평균말고 어떤 집계 함수(aggregation function)도 사용할 수 있습니다. 예를 들어 각 기간에서 최솟값을 찾을 수 있습니다:</p>
@@ -786,7 +789,7 @@ Freq: 15T, dtype: float64</code></pre>
 <span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 범례를 추가하는 함수</span></span>
 <span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="pandas_files/figure-html/cell-49-output-1.png" class="img-fluid"></p>
+<p><img src="pandas_files/figure-html/cell-48-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -951,7 +954,7 @@ Freq: Q-DEC, dtype: int64</code></pre>
 <div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>quarterly_revenue.plot(kind<span class="op">=</span><span class="st">"line"</span>)</span>
 <span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="pandas_files/figure-html/cell-61-output-1.png" class="img-fluid"></p>
+<p><img src="pandas_files/figure-html/cell-60-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>to_timestamp</code>를 호출해서 기간을 타임스탬프로 변경할 수 있습니다. 기본적으로 기간의 첫 번째 날을 반환합니다. 하지만 <code>how</code>와 <code>freq</code>를 지정해서 기간의 마지막 시간을 얻을 수 있습니다:</p>
@@ -3559,7 +3562,7 @@ dtype: bool</code></pre>
 <div class="sourceCode cell-code" id="cb198"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb198-1"><a href="#cb198-1" aria-hidden="true" tabindex="-1"></a>people.plot(kind <span class="op">=</span> <span class="st">"line"</span>, x <span class="op">=</span> <span class="st">"body_mass_index"</span>, y <span class="op">=</span> [<span class="st">"height"</span>, <span class="st">"weight"</span>])</span>
 <span id="cb198-2"><a href="#cb198-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="pandas_files/figure-html/cell-127-output-1.png" class="img-fluid"></p>
+<p><img src="pandas_files/figure-html/cell-126-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>맷플롯립의 함수가 지원하는 다른 매개변수를 사용할 수 있습니다. 예를 들어, 산점도를 그릴 때 맷플롯립의 <code>scatter()</code> 함수의 <code>s</code> 매개변수를 사용해 크기를 지정할 수 있습니다:</p>
@@ -3567,7 +3570,7 @@ dtype: bool</code></pre>
 <div class="sourceCode cell-code" id="cb199"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb199-1"><a href="#cb199-1" aria-hidden="true" tabindex="-1"></a>people.plot(kind <span class="op">=</span> <span class="st">"scatter"</span>, x <span class="op">=</span> <span class="st">"height"</span>, y <span class="op">=</span> <span class="st">"weight"</span>, s<span class="op">=</span>[<span class="dv">40</span>, <span class="dv">120</span>, <span class="dv">200</span>])</span>
 <span id="cb199-2"><a href="#cb199-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="pandas_files/figure-html/cell-128-output-1.png" class="img-fluid"></p>
+<p><img src="pandas_files/figure-html/cell-127-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>선택할 수 있는 옵션이 많습니다. 판다스 문서의 <a href="http://pandas.pydata.org/pandas-docs/stable/visualization.html">시각화</a> 페이지에서 마음에 드는 그래프를 찾아 예제 코드를 살펴 보세요.</p>
