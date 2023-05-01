@@ -2,9 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/Numpy_Basic/numpy_basic.html",
-      "/posts/Geospatial Analysis/exercise-your-first-map (1).html",
-      "/posts/Pandas/pandas.html"
+      "/posts/Geospatial Analysis/GeoPandas.html",
+      "/posts/Pandas/pandas.html",
+      "/posts/Numpy_Basic/numpy_basic.html"
     ]
   }
 ]

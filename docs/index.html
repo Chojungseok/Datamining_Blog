@@ -70,9 +70,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -148,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="analysis">analysis <span class="quarto-category-count">(3)</span></div><div class="category" data-category="code">code <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -161,43 +161,45 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1682908384110" data-listing-reading-time-sort="9.395">
+<div class="quarto-post image-right" data-index="0" data-categories="code,analysis" data-listing-date-sort="1682866800000" data-listing-file-modified-sort="1682950317383" data-listing-reading-time-sort="1.47">
+<div class="thumbnail">
+<p><a href="./posts/Geospatial Analysis/GeoPandas.html"> <img src="./posts/Geospatial Analysis/geopandas.jpg" class="thumnail-image"> </a></p>
+</div>
 <div class="body">
-<a href="./posts/Numpy_Basic/numpy_basic.html">
-<h3 class="no-anchor listing-title">
-“Numpy_Basic”
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-title: “Numpy_Basic” date: “2023-04-06” categories: [code, analysis] image: “numpy.jpg”
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/Numpy_Basic/numpy_basic.html"> </a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1682949741584" data-listing-reading-time-sort="1.495">
-<div class="body">
-<a href="./posts/Geospatial Analysis/exercise-your-first-map (1).html">
+<a href="./posts/Geospatial Analysis/GeoPandas.html">
 <h3 class="no-anchor listing-title">
 Introduction
 </h3>
 <div class="listing-subtitle">
 
 </div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
+code
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
+analysis
+</div>
+</div>
+<a href="./posts/Geospatial Analysis/GeoPandas.html">
 <div class="listing-description">
-title: “GeoPandas” date: “2023-05-01” categories: [code, analysis] image: “geopandas.jpg”
+Kiva.org is an online…
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/Geospatial Analysis/exercise-your-first-map (1).html"> </a>
+<a href="./posts/Geospatial Analysis/GeoPandas.html">
+<div class="listing-date">
+May 1, 2023
+</div>
+</a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1682908385985" data-listing-reading-time-sort="13.365">
+<div class="quarto-post image-right" data-index="1" data-categories="code,analysis" data-listing-date-sort="1682866800000" data-listing-file-modified-sort="1682950182801" data-listing-reading-time-sort="13.34">
+<div class="thumbnail">
+<p><a href="./posts/Pandas/pandas.html"> <img src="./posts/Pandas/pandas.png" class="thumnail-image"> </a></p>
+</div>
 <div class="body">
 <a href="./posts/Pandas/pandas.html">
 <h3 class="no-anchor listing-title">
@@ -206,13 +208,62 @@ title: “GeoPandas” date: “2023-05-01” categories: [code, analysis] image
 <div class="listing-subtitle">
 
 </div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
+code
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
+analysis
+</div>
+</div>
+<a href="./posts/Pandas/pandas.html">
 <div class="listing-description">
-title: “Pandas” date: “2023-05-01” categories: [code, analysis] image: “pandas.png”
+<strong>도구 - 판다스(pandas)</strong>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/Pandas/pandas.html"> </a>
+<a href="./posts/Pandas/pandas.html">
+<div class="listing-date">
+May 1, 2023
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="code,analysis" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1682950214866" data-listing-reading-time-sort="9.37">
+<div class="thumbnail">
+<p><a href="./posts/Numpy_Basic/numpy_basic.html"> <img src="./posts/Numpy_Basic/numpy.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/Numpy_Basic/numpy_basic.html">
+<h3 class="no-anchor listing-title">
+“Numpy_Basic”
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('code'); return false;">
+code
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('analysis'); return false;">
+analysis
+</div>
+</div>
+<a href="./posts/Numpy_Basic/numpy_basic.html">
+<div class="listing-description">
+“numpy 기본 코드 실습(한글)”
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/Numpy_Basic/numpy_basic.html">
+<div class="listing-date">
+Apr 6, 2023
+</div>
+</a>
 </div>
 </div>
 </div>
