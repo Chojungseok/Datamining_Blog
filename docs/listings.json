@@ -2,7 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/Numpy_Basic/numpy_basic.html"
+      "/posts/Numpy_Basic/numpy_basic.html",
+      "/posts/Pandas/pandas.html"
     ]
   }
 ]
