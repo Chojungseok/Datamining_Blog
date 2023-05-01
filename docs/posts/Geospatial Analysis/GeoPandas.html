@@ -171,6 +171,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>[<span class="st">"geopandas.jpg"</span>](<span class="st">'/Users/chojs/Desktop/datamining_blog/posts/Geospatial Analysis/geopandas.jpg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p><a href="https://www.kiva.org/">Kiva.org</a> is an online crowdfunding platform extending financial services to poor people around the world. Kiva lenders have provided over $1 billion dollars in loans to over 2 million people.</p>
@@ -181,30 +184,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this exercise, you’ll investigate Kiva loans in the Philippines. Can you identify regions that might be outside of Kiva’s current network, in order to identify opportunities for recruiting new Field Partners?</p>
 <p>To get started, run the code cell below to set up our feedback system.</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#from learntools.core import binder</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#binder.bind(globals())</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#from learntools.geospatial.ex1 import *</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#from learntools.core import binder</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#binder.bind(globals())</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#from learntools.geospatial.ex1 import *</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="get-the-data." class="level3">
 <h3 class="anchored" data-anchor-id="get-the-data.">1) Get the data.</h3>
 <p>Use the next cell to load the shapefile located at <code>loans_filepath</code> to create a GeoDataFrame <code>world_loans</code>.</p>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>loans_filepath <span class="op">=</span> <span class="st">"/Users/chojs/Desktop/Dataming_class/archive/kiva_loans/kiva_loans"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here: Load the data</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>world_loans <span class="op">=</span> gpd.read_file(loans_filepath)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>loans_filepath <span class="op">=</span> <span class="st">"/Users/chojs/Desktop/Dataming_class/archive/kiva_loans/kiva_loans"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here: Load the data</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>world_loans <span class="op">=</span> gpd.read_file(loans_filepath)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="plot-the-data." class="level3">
 <h3 class="anchored" data-anchor-id="plot-the-data.">2) Plot the data.</h3>
 <p>Run the next code cell without changes to load a GeoDataFrame <code>world</code> containing country boundaries.</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This dataset is provided in GeoPandas</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>world_filepath <span class="op">=</span> gpd.datasets.get_path(<span class="st">'naturalearth_lowres'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>world <span class="op">=</span> gpd.read_file(world_filepath)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>world.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This dataset is provided in GeoPandas</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>world_filepath <span class="op">=</span> gpd.datasets.get_path(<span class="st">'naturalearth_lowres'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>world <span class="op">=</span> gpd.read_file(world_filepath)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>world.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
@@ -274,17 +277,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Use the <code>world</code> and <code>world_loans</code> GeoDataFrames to visualize Kiva loan locations across the world.</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> world.plot(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">20</span>), color<span class="op">=</span><span class="st">'whitesmoke'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>world_loans.plot(ax<span class="op">=</span>ax, markersize<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncomment to see a hint</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#q_2.hint()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> world.plot(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">20</span>), color<span class="op">=</span><span class="st">'whitesmoke'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>world_loans.plot(ax<span class="op">=</span>ax, markersize<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncomment to see a hint</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#q_2.hint()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>&lt;Axes: &gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="GeoPandas_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
+<p><img src="GeoPandas_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -292,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="select-loans-based-in-the-philippines.">3) Select loans based in the Philippines.</h3>
 <p>Next, you’ll focus on loans that are based in the Philippines. Use the next code cell to create a GeoDataFrame <code>PHL_loans</code> which contains all rows from <code>world_loans</code> with loans that are based in the Philippines.</p>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>world_loans.country.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>world_loans.country.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>array(['Cambodia', 'Samoa', 'Mozambique', 'Ukraine', 'Azerbaijan',
        'Cameroon', 'Mongolia', 'Dominican Republic', 'Bolivia',
@@ -314,18 +317,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>PHL_loans <span class="op">=</span> world_loans.loc[world_loans.country <span class="op">==</span> <span class="st">'Philippines'</span>].copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>PHL_loans <span class="op">=</span> world_loans.loc[world_loans.country <span class="op">==</span> <span class="st">'Philippines'</span>].copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="understand-loans-in-the-philippines." class="level3">
 <h3 class="anchored" data-anchor-id="understand-loans-in-the-philippines.">4) Understand loans in the Philippines.</h3>
 <p>Run the next code cell without changes to load a GeoDataFrame <code>PHL</code> containing boundaries for all islands in the Philippines.</p>
 <div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a KML file containing island boundaries</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gpd.io.<span class="bu">file</span>.fiona.drvsupport.supported_drivers[<span class="st">'KML'</span>] <span class="op">=</span> <span class="st">'rw'</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>PHL <span class="op">=</span> gpd.read_file(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/Philippines_AL258.kml"</span>, driver<span class="op">=</span><span class="st">'KML'</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>PHL.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a KML file containing island boundaries</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>gpd.io.<span class="bu">file</span>.fiona.drvsupport.supported_drivers[<span class="st">'KML'</span>] <span class="op">=</span> <span class="st">'rw'</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>PHL <span class="op">=</span> gpd.read_file(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/Philippines_AL258.kml"</span>, driver<span class="op">=</span><span class="st">'KML'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>PHL.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 
 <div>
@@ -377,14 +380,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Use the <code>PHL</code> and <code>PHL_loans</code> GeoDataFrames to visualize loans in the Philippines.</p>
 <div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> PHL.plot(figsize <span class="op">=</span> (<span class="dv">20</span>,<span class="dv">20</span>),color <span class="op">=</span> <span class="st">'whitesmoke'</span>,linestyle <span class="op">=</span> <span class="st">':'</span>, edgecolor <span class="op">=</span> <span class="st">'black'</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>PHL_loans.plot(ax <span class="op">=</span> ax, markersize <span class="op">=</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> PHL.plot(figsize <span class="op">=</span> (<span class="dv">20</span>,<span class="dv">20</span>),color <span class="op">=</span> <span class="st">'whitesmoke'</span>,linestyle <span class="op">=</span> <span class="st">':'</span>, edgecolor <span class="op">=</span> <span class="st">'black'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>PHL_loans.plot(ax <span class="op">=</span> ax, markersize <span class="op">=</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>&lt;Axes: &gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="GeoPandas_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
+<p><img src="GeoPandas_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Can you identify any islands where it might be useful to recruit new Field Partners? Do any islands currently look outside of Kiva’s reach?</p>
