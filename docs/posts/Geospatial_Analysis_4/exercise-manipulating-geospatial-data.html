@@ -399,18 +399,14 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>Considering only the five locations in Berkeley, how many of the (latitude, longitude) locations seem potentially correct (are located in the correct city)?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the solution (Run this code cell to receive credit!)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>q_2.b.solution()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="consolidate-your-data." class="level3">
 <h3 class="anchored" data-anchor-id="consolidate-your-data.">3) Consolidate your data.</h3>
 <p>Run the code below to load a GeoDataFrame <code>CA_counties</code> containing the name, area (in square kilometers), and a unique id (in the “GEOID” column) for each county in the state of California. The “geometry” column contains a polygon with county boundaries.</p>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>CA_counties <span class="op">=</span> gpd.read_file(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/CA_county_boundaries/CA_county_boundaries/CA_county_boundaries.shp"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>CA_counties.crs <span class="op">=</span> {<span class="st">'init'</span>: <span class="st">'epsg:4326'</span>}</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>CA_counties.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>CA_counties <span class="op">=</span> gpd.read_file(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/CA_county_boundaries/CA_county_boundaries/CA_county_boundaries.shp"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>CA_counties.crs <span class="op">=</span> {<span class="st">'init'</span>: <span class="st">'epsg:4326'</span>}</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>CA_counties.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/chojs/opt/anaconda3/lib/python3.9/site-packages/pyproj/crs/crs.py:141: FutureWarning: '+init=&lt;authority&gt;:&lt;code&gt;' syntax is deprecated. '&lt;authority&gt;:&lt;code&gt;' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
   in_crs_string = _prepare_from_proj_string(in_crs_string)</code></pre>
@@ -472,25 +468,20 @@ dtype: int64</code></pre>
 </div>
 <p>Next, we create three DataFrames: - <code>CA_pop</code> contains an estimate of the population of each county. - <code>CA_high_earners</code> contains the number of households with an income of at least $150,000 per year. - <code>CA_median_age</code> contains the median age for each county.</p>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>CA_pop <span class="op">=</span> pd.read_csv(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/CA_county_population.csv"</span>, index_col<span class="op">=</span><span class="st">"GEOID"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>CA_high_earners <span class="op">=</span> pd.read_csv(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/CA_county_high_earners.csv"</span>, index_col<span class="op">=</span><span class="st">"GEOID"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>CA_median_age <span class="op">=</span> pd.read_csv(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/CA_county_median_age.csv"</span>, index_col<span class="op">=</span><span class="st">"GEOID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>CA_pop <span class="op">=</span> pd.read_csv(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/CA_county_population.csv"</span>, index_col<span class="op">=</span><span class="st">"GEOID"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>CA_high_earners <span class="op">=</span> pd.read_csv(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/CA_county_high_earners.csv"</span>, index_col<span class="op">=</span><span class="st">"GEOID"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>CA_median_age <span class="op">=</span> pd.read_csv(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/CA_county_median_age.csv"</span>, index_col<span class="op">=</span><span class="st">"GEOID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Use the next code cell to join the <code>CA_counties</code> GeoDataFrame with <code>CA_pop</code>, <code>CA_high_earners</code>, and <code>CA_median_age</code>.</p>
 <p>Name the resultant GeoDataFrame <code>CA_stats</code>, and make sure it has 8 columns: “GEOID”, “name”, “area_sqkm”, “geometry”, “population”, “high_earners”, and “median_age”.</p>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cols_to_add <span class="op">=</span> CA_pop.join([CA_high_earners, CA_median_age]).reset_index()</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>CA_stats <span class="op">=</span> CA_counties.merge(cols_to_add, on<span class="op">=</span><span class="st">"GEOID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lines below will give you a hint or solution code</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#q_3.hint()</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#q_3.solution()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>cols_to_add <span class="op">=</span> CA_pop.join([CA_high_earners, CA_median_age]).reset_index()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>CA_stats <span class="op">=</span> CA_counties.merge(cols_to_add, on<span class="op">=</span><span class="st">"GEOID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we have all of the data in one place, it’s much easier to calculate statistics that use a combination of columns. Run the next code cell to create a “density” column with the population density.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>CA_stats[<span class="st">"density"</span>] <span class="op">=</span> CA_stats[<span class="st">"population"</span>] <span class="op">/</span> CA_stats[<span class="st">"area_sqkm"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>CA_stats[<span class="st">"density"</span>] <span class="op">=</span> CA_stats[<span class="st">"population"</span>] <span class="op">/</span> CA_stats[<span class="st">"area_sqkm"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="which-counties-look-promising" class="level3">
@@ -499,11 +490,11 @@ dtype: int64</code></pre>
 <p>Use the next code cell to create a GeoDataFrame <code>sel_counties</code> that contains a subset of the rows (and all of the columns) from the <code>CA_stats</code> GeoDataFrame. In particular, you should select counties where: - there are at least 100,000 households making $150,000 per year, - the median age is less than 38.5, and - the density of inhabitants is at least 285 (per square kilometer).</p>
 <p>Additionally, selected counties should satisfy at least one of the following criteria: - there are at least 500,000 households making $150,000 per year, - the median age is less than 35.5, or - the density of inhabitants is at least 1400 (per square kilometer).</p>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sel_counties <span class="op">=</span> CA_stats[((CA_stats.high_earners <span class="op">&gt;</span> <span class="dv">100000</span>) <span class="op">&amp;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                         (CA_stats.median_age <span class="op">&lt;</span> <span class="fl">38.5</span>) <span class="op">&amp;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                         ((CA_stats.median_age <span class="op">&lt;</span> <span class="fl">35.5</span>) <span class="op">|</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                         (CA_stats.high_earners <span class="op">&gt;</span> <span class="dv">500000</span>)))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sel_counties <span class="op">=</span> CA_stats[((CA_stats.high_earners <span class="op">&gt;</span> <span class="dv">100000</span>) <span class="op">&amp;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                         (CA_stats.median_age <span class="op">&lt;</span> <span class="fl">38.5</span>) <span class="op">&amp;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                         ((CA_stats.median_age <span class="op">&lt;</span> <span class="fl">35.5</span>) <span class="op">|</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                         (CA_stats.high_earners <span class="op">&gt;</span> <span class="dv">500000</span>)))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="how-many-stores-did-you-identify" class="level3">
@@ -511,8 +502,8 @@ dtype: int64</code></pre>
 <p>When looking for the next Starbucks Reserve Roastery location, you’d like to consider all of the stores within the counties that you selected. So, how many stores are within the selected counties?</p>
 <p>To prepare to answer this question, run the next code cell to create a GeoDataFrame <code>starbucks_gdf</code> with all of the starbucks locations.</p>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>starbucks_gdf <span class="op">=</span> gpd.GeoDataFrame(starbucks, geometry<span class="op">=</span>gpd.points_from_xy(starbucks.Longitude, starbucks.Latitude))</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>starbucks_gdf.crs <span class="op">=</span> {<span class="st">'init'</span>: <span class="st">'epsg:4326'</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>starbucks_gdf <span class="op">=</span> gpd.GeoDataFrame(starbucks, geometry<span class="op">=</span>gpd.points_from_xy(starbucks.Longitude, starbucks.Latitude))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>starbucks_gdf.crs <span class="op">=</span> {<span class="st">'init'</span>: <span class="st">'epsg:4326'</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/chojs/opt/anaconda3/lib/python3.9/site-packages/pyproj/crs/crs.py:141: FutureWarning: '+init=&lt;authority&gt;:&lt;code&gt;' syntax is deprecated. '&lt;authority&gt;:&lt;code&gt;' is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
   in_crs_string = _prepare_from_proj_string(in_crs_string)</code></pre>
@@ -520,30 +511,30 @@ dtype: int64</code></pre>
 </div>
 <p>So, how many stores are in the counties you selected?</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill in your answer</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>locations_of_interest <span class="op">=</span> gpd.sjoin(starbucks_gdf, sel_counties)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>num_stores <span class="op">=</span> <span class="bu">len</span>(locations_of_interest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill in your answer</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>locations_of_interest <span class="op">=</span> gpd.sjoin(starbucks_gdf, sel_counties)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>num_stores <span class="op">=</span> <span class="bu">len</span>(locations_of_interest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualize-the-store-locations." class="level3">
 <h3 class="anchored" data-anchor-id="visualize-the-store-locations.">6) Visualize the store locations.</h3>
 <p>Create a map that shows the locations of the stores that you identified in the previous question.</p>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a base map</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>m_6 <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">37</span>,<span class="op">-</span><span class="dv">120</span>], zoom_start<span class="op">=</span><span class="dv">6</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here: show selected store locations</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>mc <span class="op">=</span> MarkerCluster()</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>locations_of_interest <span class="op">=</span> gpd.sjoin(starbucks_gdf, sel_counties)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, row <span class="kw">in</span> locations_of_interest.iterrows():</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> math.isnan(row[<span class="st">'Longitude'</span>]) <span class="kw">and</span> <span class="kw">not</span> math.isnan(row[<span class="st">'Latitude'</span>]):</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        mc.add_child(folium.Marker([row[<span class="st">'Latitude'</span>], row[<span class="st">'Longitude'</span>]]))</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>m_6.add_child(mc)</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the map</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>embed_map(m_6, <span class="st">'q_6.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a base map</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>m_6 <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">37</span>,<span class="op">-</span><span class="dv">120</span>], zoom_start<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here: show selected store locations</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>mc <span class="op">=</span> MarkerCluster()</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>locations_of_interest <span class="op">=</span> gpd.sjoin(starbucks_gdf, sel_counties)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, row <span class="kw">in</span> locations_of_interest.iterrows():</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> math.isnan(row[<span class="st">'Longitude'</span>]) <span class="kw">and</span> <span class="kw">not</span> math.isnan(row[<span class="st">'Latitude'</span>]):</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        mc.add_child(folium.Marker([row[<span class="st">'Latitude'</span>], row[<span class="st">'Longitude'</span>]]))</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>m_6.add_child(mc)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the map</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>embed_map(m_6, <span class="st">'q_6.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 
         <iframe width="100%" height="500px" src="q_6.html" frameborder="0" allowfullscreen=""></iframe>

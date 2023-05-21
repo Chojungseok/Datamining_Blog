@@ -214,131 +214,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="do-earthquakes-coincide-with-plate-boundaries" class="level3">
 <h3 class="anchored" data-anchor-id="do-earthquakes-coincide-with-plate-boundaries">1) Do earthquakes coincide with plate boundaries?</h3>
 <p>Run the code cell below to create a DataFrame <code>plate_boundaries</code> that shows global plate boundaries. The “coordinates” column is a list of (latitude, longitude) locations along the boundaries.</p>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plate_boundaries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>HAZ_PLATES</th>
-      <th>HAZ_PLAT_1</th>
-      <th>HAZ_PLAT_2</th>
-      <th>Shape_Leng</th>
-      <th>coordinates</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>TRENCH</td>
-      <td>SERAM TROUGH (ACTIVE)</td>
-      <td>6722</td>
-      <td>5.843467</td>
-      <td>[(-5.444200361999947, 133.6808931800001), (-5....</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>TRENCH</td>
-      <td>WETAR THRUST</td>
-      <td>6722</td>
-      <td>1.829013</td>
-      <td>[(-7.760600482999962, 125.47879802900002), (-7...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>TRENCH</td>
-      <td>TRENCH WEST OF LUZON (MANILA TRENCH) NORTHERN ...</td>
-      <td>6621</td>
-      <td>6.743604</td>
-      <td>[(19.817899819000047, 120.09999798800004), (19...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>TRENCH</td>
-      <td>BONIN TRENCH</td>
-      <td>9821</td>
-      <td>8.329381</td>
-      <td>[(26.175899215000072, 143.20620700100005), (26...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>TRENCH</td>
-      <td>NEW GUINEA TRENCH</td>
-      <td>8001</td>
-      <td>11.998145</td>
-      <td>[(0.41880004000006466, 132.8273013480001), (0....</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>355</th>
-      <td>TRANSFORM FAULT</td>
-      <td>VIRGIN ISLANDS TRANSFORM FAULTS</td>
-      <td>2014</td>
-      <td>1.196272</td>
-      <td>[(17.68930094500007, -65.43810299699999), (17....</td>
-    </tr>
-    <tr>
-      <th>356</th>
-      <td>TRANSFORM FAULT</td>
-      <td>VIRGIN ISLANDS TRANSFORM FAULTS</td>
-      <td>2014</td>
-      <td>1.154880</td>
-      <td>[(18.674998994000077, -63.80830014099996), (18...</td>
-    </tr>
-    <tr>
-      <th>357</th>
-      <td>TRANSFORM FAULT</td>
-      <td>SW HISPANIOLA TRANSFORM FAULTS</td>
-      <td>2014</td>
-      <td>2.061952</td>
-      <td>[(18.158599879000064, -75.41049989899994), (18...</td>
-    </tr>
-    <tr>
-      <th>358</th>
-      <td>TRANSFORM FAULT</td>
-      <td>SW HISPANIOLA TRANSFORM FAULTS</td>
-      <td>2014</td>
-      <td>2.668446</td>
-      <td>[(18.484399517000043, -73.53189800799998), (18...</td>
-    </tr>
-    <tr>
-      <th>359</th>
-      <td>TRANSFORM FAULT</td>
-      <td>N. HISPANIOLA TRANSFORM FAULT</td>
-      <td>2014</td>
-      <td>4.290817</td>
-      <td>[(19.82939951700007, -71.63120297699999), (19....</td>
-    </tr>
-  </tbody>
-</table>
-<p>360 rows × 5 columns</p>
-</div>
-</div>
-</div>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 필요한 라이브러리를 임포트하고, 쉐이프 파일을 읽어들입니다.</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plate_boundaries <span class="op">=</span> gpd.read_file(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/Plate_Boundaries/Plate_Boundaries/Plate_Boundaries.shp"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 각 행마다 좌표 쌍의 리스트를 담은 'coordinates' 열을 새로 만듭니다.</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plate_boundaries[<span class="st">'coordinates'</span>] <span class="op">=</span> plate_boundaries.<span class="bu">apply</span>(<span class="kw">lambda</span> x: [(b,a) <span class="cf">for</span> (a,b) <span class="kw">in</span> <span class="bu">list</span>(x.geometry.coords)], axis<span class="op">=</span><span class="st">'columns'</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 이제 더 이상 필요없는 'geometry' 열을 제거합니다.</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plate_boundaries.drop(<span class="st">'geometry'</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 생성된 데이터프레임의 첫 다섯 행을 출력합니다.</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plate_boundaries.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 필요한 라이브러리를 임포트하고, 쉐이프 파일을 읽어들입니다.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plate_boundaries <span class="op">=</span> gpd.read_file(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/Plate_Boundaries/Plate_Boundaries/Plate_Boundaries.shp"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 각 행마다 좌표 쌍의 리스트를 담은 'coordinates' 열을 새로 만듭니다.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plate_boundaries[<span class="st">'coordinates'</span>] <span class="op">=</span> plate_boundaries.<span class="bu">apply</span>(<span class="kw">lambda</span> x: [(b,a) <span class="cf">for</span> (a,b) <span class="kw">in</span> <span class="bu">list</span>(x.geometry.coords)], axis<span class="op">=</span><span class="st">'columns'</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 이제 더 이상 필요없는 'geometry' 열을 제거합니다.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plate_boundaries.drop(<span class="st">'geometry'</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 생성된 데이터프레임의 첫 다섯 행을 출력합니다.</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plate_boundaries.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 
 <div>
@@ -402,9 +290,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Next, run the code cell below without changes to load the historical earthquake data into a DataFrame <code>earthquakes</code>.</p>
 <div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data and print the first 5 rows</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>earthquakes <span class="op">=</span> pd.read_csv(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/earthquakes1970-2014.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">"DateTime"</span>])</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>earthquakes.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data and print the first 5 rows</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>earthquakes <span class="op">=</span> pd.read_csv(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/earthquakes1970-2014.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">"DateTime"</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>earthquakes.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 
 <div>
@@ -510,25 +398,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The code cell below visualizes the plate boundaries on a map. Use all of the earthquake data to add a heatmap to the same map, to determine whether earthquakes coincide with plate boundaries.</p>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 플레이트 경계를 기반으로 하는 기본 지도를 만듭니다.</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 지도의 중심 위치는 [35, 136]이며, zoom level은 5입니다.</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 타일은 'cartodbpositron'을 사용합니다.</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>m_1 <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">35</span>,<span class="dv">136</span>], tiles<span class="op">=</span><span class="st">'cartodbpositron'</span>, zoom_start<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plate_boundaries 데이터프레임의 각 행마다 PolyLine 객체를 생성하여 지도에 추가합니다.</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># PolyLine 객체는 'coordinates' 열에 저장된 좌표 쌍의 리스트를 사용합니다.</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># PolyLine 객체의 두께는 2이며, 색상은 검은색으로 지정합니다.</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(plate_boundaries)):</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    folium.PolyLine(locations<span class="op">=</span>plate_boundaries.coordinates.iloc[i], weight<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'black'</span>).add_to(m_1)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 이제 지도에 HeatMap을 추가합니다.</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># HeatMap 함수는 earthquakes 데이터프레임의 'Latitude'와 'Longitude' 열을 사용합니다.</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># radius 인자는 15로 설정합니다.</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>HeatMap(data<span class="op">=</span>earthquakes[[<span class="st">'Latitude'</span>, <span class="st">'Longitude'</span>]], radius<span class="op">=</span><span class="dv">15</span>).add_to(m_1)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># embed_map 함수를 사용하여 지도를 HTML 파일에 저장하고, 해당 파일을 출력합니다.</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>embed_map(m_1, <span class="st">'q_1.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 플레이트 경계를 기반으로 하는 기본 지도를 만듭니다.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 지도의 중심 위치는 [35, 136]이며, zoom level은 5입니다.</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 타일은 'cartodbpositron'을 사용합니다.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>m_1 <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">35</span>,<span class="dv">136</span>], tiles<span class="op">=</span><span class="st">'cartodbpositron'</span>, zoom_start<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plate_boundaries 데이터프레임의 각 행마다 PolyLine 객체를 생성하여 지도에 추가합니다.</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># PolyLine 객체는 'coordinates' 열에 저장된 좌표 쌍의 리스트를 사용합니다.</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># PolyLine 객체의 두께는 2이며, 색상은 검은색으로 지정합니다.</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(plate_boundaries)):</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    folium.PolyLine(locations<span class="op">=</span>plate_boundaries.coordinates.iloc[i], weight<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'black'</span>).add_to(m_1)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 이제 지도에 HeatMap을 추가합니다.</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># HeatMap 함수는 earthquakes 데이터프레임의 'Latitude'와 'Longitude' 열을 사용합니다.</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># radius 인자는 15로 설정합니다.</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>HeatMap(data<span class="op">=</span>earthquakes[[<span class="st">'Latitude'</span>, <span class="st">'Longitude'</span>]], radius<span class="op">=</span><span class="dv">15</span>).add_to(m_1)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># embed_map 함수를 사용하여 지도를 HTML 파일에 저장하고, 해당 파일을 출력합니다.</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>embed_map(m_1, <span class="st">'q_1.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 
         <iframe width="100%" height="500px" src="q_1.html" frameborder="0" allowfullscreen=""></iframe>
@@ -541,27 +429,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="is-there-a-relationship-between-earthquake-depth-and-proximity-to-a-plate-boundary-in-japan">2) Is there a relationship between earthquake depth and proximity to a plate boundary in Japan?</h3>
 <p>You recently read that the depth of earthquakes tells us <a href="https://www.usgs.gov/faqs/what-depth-do-earthquakes-occur-what-significance-depth?qt-news_science_products=0#qt-news_science_products">important information</a> about the structure of the earth. You’re interested to see if there are any intereresting global patterns, and you’d also like to understand how depth varies in Japan.</p>
 <div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a base map with plate boundaries</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>m_2 <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">35</span>,<span class="dv">136</span>], tiles<span class="op">=</span><span class="st">'cartodbpositron'</span>, zoom_start<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(plate_boundaries)):</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    folium.PolyLine(locations<span class="op">=</span>plate_boundaries.coordinates.iloc[i], weight<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'black'</span>).add_to(m_2)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> color_producer(val):</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> val <span class="op">&lt;</span> <span class="dv">50</span>:</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'forestgreen'</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> val <span class="op">&lt;</span> <span class="dv">100</span>:</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'darkorange'</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'darkred'</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here: Add a map to visualize earthquake depth</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(earthquakes)):</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    folium.Circle(</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        location<span class="op">=</span>[earthquakes.iloc[i][<span class="st">'Latitude'</span>], earthquakes.iloc[i][<span class="st">'Longitude'</span>]],</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        radius<span class="op">=</span><span class="dv">2000</span>,</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>color_producer(earthquakes.iloc[i][<span class="st">'Depth'</span>])).add_to(m_2)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>embed_map(m_2, <span class="st">'q_2.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a base map with plate boundaries</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>m_2 <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">35</span>,<span class="dv">136</span>], tiles<span class="op">=</span><span class="st">'cartodbpositron'</span>, zoom_start<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(plate_boundaries)):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    folium.PolyLine(locations<span class="op">=</span>plate_boundaries.coordinates.iloc[i], weight<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'black'</span>).add_to(m_2)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> color_producer(val):</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> val <span class="op">&lt;</span> <span class="dv">50</span>:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'forestgreen'</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> val <span class="op">&lt;</span> <span class="dv">100</span>:</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'darkorange'</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'darkred'</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here: Add a map to visualize earthquake depth</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(earthquakes)):</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    folium.Circle(</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        location<span class="op">=</span>[earthquakes.iloc[i][<span class="st">'Latitude'</span>], earthquakes.iloc[i][<span class="st">'Longitude'</span>]],</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        radius<span class="op">=</span><span class="dv">2000</span>,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>color_producer(earthquakes.iloc[i][<span class="st">'Depth'</span>])).add_to(m_2)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>embed_map(m_2, <span class="st">'q_2.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 
         <iframe width="100%" height="500px" src="q_2.html" frameborder="0" allowfullscreen=""></iframe>
@@ -574,10 +462,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="which-prefectures-have-high-population-density">3) Which prefectures have high population density?</h3>
 <p>Run the next code cell (without changes) to create a GeoDataFrame <code>prefectures</code> that contains the geographical boundaries of Japanese prefectures.</p>
 <div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GeoDataFrame with prefecture boundaries</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>prefectures <span class="op">=</span> gpd.read_file(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/japan-prefecture-boundaries/japan-prefecture-boundaries/japan-prefecture-boundaries.shp"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>prefectures.set_index(<span class="st">'prefecture'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>prefectures.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GeoDataFrame with prefecture boundaries</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>prefectures <span class="op">=</span> gpd.read_file(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/japan-prefecture-boundaries/japan-prefecture-boundaries/japan-prefecture-boundaries.shp"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>prefectures.set_index(<span class="st">'prefecture'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>prefectures.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 
 <div>
@@ -621,17 +509,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The next code cell creates a DataFrame <code>stats</code> containing the population, area (in square kilometers), and population density (per square kilometer) for each Japanese prefecture. Run the code cell without changes.</p>
 <div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame containing population of each prefecture</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> pd.read_csv(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/japan-prefecture-population.csv"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>population.set_index(<span class="st">'prefecture'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate area (in square kilometers) of each prefecture</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>area_sqkm <span class="op">=</span> pd.Series(prefectures.geometry.to_crs(epsg<span class="op">=</span><span class="dv">32654</span>).area <span class="op">/</span> <span class="dv">10</span><span class="op">**</span><span class="dv">6</span>, name<span class="op">=</span><span class="st">'area_sqkm'</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> population.join(area_sqkm)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add density (per square kilometer) of each prefecture</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>stats[<span class="st">'density'</span>] <span class="op">=</span> stats[<span class="st">"population"</span>] <span class="op">/</span> stats[<span class="st">"area_sqkm"</span>]</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>stats.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame containing population of each prefecture</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>population <span class="op">=</span> pd.read_csv(<span class="st">"/Users/chojs/Desktop/Dataming_class/archive/japan-prefecture-population.csv"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>population.set_index(<span class="st">'prefecture'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate area (in square kilometers) of each prefecture</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>area_sqkm <span class="op">=</span> pd.Series(prefectures.geometry.to_crs(epsg<span class="op">=</span><span class="dv">32654</span>).area <span class="op">/</span> <span class="dv">10</span><span class="op">**</span><span class="dv">6</span>, name<span class="op">=</span><span class="st">'area_sqkm'</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> population.join(area_sqkm)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add density (per square kilometer) of each prefecture</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>stats[<span class="st">'density'</span>] <span class="op">=</span> stats[<span class="st">"population"</span>] <span class="op">/</span> stats[<span class="st">"area_sqkm"</span>]</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>stats.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 
 <div>
@@ -689,20 +577,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Use the next code cell to create a choropleth map to visualize population density.</p>
 <div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a base map</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>m_3 <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">35</span>,<span class="dv">136</span>], tiles<span class="op">=</span><span class="st">'cartodbpositron'</span>, zoom_start<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here: create a choropleth map to visualize population density</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>Choropleth(geo_data<span class="op">=</span>prefectures[<span class="st">'geometry'</span>].__geo_interface__,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>           data<span class="op">=</span>stats[<span class="st">'density'</span>],</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>           key_on<span class="op">=</span><span class="st">"feature.id"</span>,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>           fill_color<span class="op">=</span><span class="st">'YlGnBu'</span>,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>           legend_name<span class="op">=</span><span class="st">'Population density (per square kilometer)'</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>          ).add_to(m_3)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># View the map</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>embed_map(m_3, <span class="st">'q_3.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a base map</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>m_3 <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">35</span>,<span class="dv">136</span>], tiles<span class="op">=</span><span class="st">'cartodbpositron'</span>, zoom_start<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here: create a choropleth map to visualize population density</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Choropleth(geo_data<span class="op">=</span>prefectures[<span class="st">'geometry'</span>].__geo_interface__,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>           data<span class="op">=</span>stats[<span class="st">'density'</span>],</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>           key_on<span class="op">=</span><span class="st">"feature.id"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>           fill_color<span class="op">=</span><span class="st">'YlGnBu'</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>           legend_name<span class="op">=</span><span class="st">'Population density (per square kilometer)'</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>          ).add_to(m_3)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># View the map</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>embed_map(m_3, <span class="st">'q_3.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 
         <iframe width="100%" height="500px" src="q_3.html" frameborder="0" allowfullscreen=""></iframe>
@@ -715,34 +603,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="which-high-density-prefecture-is-prone-to-high-magnitude-earthquakes">4) Which high-density prefecture is prone to high-magnitude earthquakes?</h3>
 <p>Create a map to suggest one prefecture that might benefit from earthquake reinforcement. Your map should visualize both density and earthquake magnitude.</p>
 <div class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a base map</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>m_4 <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">35</span>,<span class="dv">136</span>], tiles<span class="op">=</span><span class="st">'cartodbpositron'</span>, zoom_start<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here: create a map</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> color_producer(magnitude):</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> magnitude <span class="op">&gt;</span> <span class="fl">6.5</span>:</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'red'</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'green'</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>Choropleth(</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    geo_data<span class="op">=</span>prefectures[<span class="st">'geometry'</span>].__geo_interface__,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>stats[<span class="st">'density'</span>],</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    key_on<span class="op">=</span><span class="st">"feature.id"</span>,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    fill_color<span class="op">=</span><span class="st">'BuPu'</span>,</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    legend_name<span class="op">=</span><span class="st">'Population density (per square kilometer)'</span>).add_to(m_4)</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(earthquakes)):</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    folium.Circle(</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        location<span class="op">=</span>[earthquakes.iloc[i][<span class="st">'Latitude'</span>], earthquakes.iloc[i][<span class="st">'Longitude'</span>]],</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        popup<span class="op">=</span>(<span class="st">"</span><span class="sc">{}</span><span class="st"> (</span><span class="sc">{}</span><span class="st">)"</span>).<span class="bu">format</span>(</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>            earthquakes.iloc[i][<span class="st">'Magnitude'</span>],</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>            earthquakes.iloc[i][<span class="st">'DateTime'</span>].year),</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        radius<span class="op">=</span>earthquakes.iloc[i][<span class="st">'Magnitude'</span>]<span class="op">**</span><span class="fl">5.5</span>,</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>color_producer(earthquakes.iloc[i][<span class="st">'Magnitude'</span>])).add_to(m_4)</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># View the map</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>embed_map(m_4, <span class="st">'q_4.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a base map</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>m_4 <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="dv">35</span>,<span class="dv">136</span>], tiles<span class="op">=</span><span class="st">'cartodbpositron'</span>, zoom_start<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here: create a map</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> color_producer(magnitude):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> magnitude <span class="op">&gt;</span> <span class="fl">6.5</span>:</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'red'</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'green'</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>Choropleth(</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    geo_data<span class="op">=</span>prefectures[<span class="st">'geometry'</span>].__geo_interface__,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>stats[<span class="st">'density'</span>],</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    key_on<span class="op">=</span><span class="st">"feature.id"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    fill_color<span class="op">=</span><span class="st">'BuPu'</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    legend_name<span class="op">=</span><span class="st">'Population density (per square kilometer)'</span>).add_to(m_4)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(earthquakes)):</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    folium.Circle(</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        location<span class="op">=</span>[earthquakes.iloc[i][<span class="st">'Latitude'</span>], earthquakes.iloc[i][<span class="st">'Longitude'</span>]],</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        popup<span class="op">=</span>(<span class="st">"</span><span class="sc">{}</span><span class="st"> (</span><span class="sc">{}</span><span class="st">)"</span>).<span class="bu">format</span>(</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>            earthquakes.iloc[i][<span class="st">'Magnitude'</span>],</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>            earthquakes.iloc[i][<span class="st">'DateTime'</span>].year),</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        radius<span class="op">=</span>earthquakes.iloc[i][<span class="st">'Magnitude'</span>]<span class="op">**</span><span class="fl">5.5</span>,</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>color_producer(earthquakes.iloc[i][<span class="st">'Magnitude'</span>])).add_to(m_4)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co"># View the map</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>embed_map(m_4, <span class="st">'q_4.html'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 
         <iframe width="100%" height="500px" src="q_4.html" frameborder="0" allowfullscreen=""></iframe>
